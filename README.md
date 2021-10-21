@@ -11,7 +11,7 @@ You can compile this project as lazarus package with LCL dependency or using scr
 
 __build requirements:__
 
-fpc-base, pfc-units
+fpc-base, pfc-units, portabledynlib (look in my repository)
 
 __+libs:__
 
