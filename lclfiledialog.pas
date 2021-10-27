@@ -198,9 +198,17 @@ assert(LCLFDLibHandleIsValid,'library named '+LCLFDLibname+' not loaded');
 TInit(GetMethod(LCLFDLibHandle,'Init'))();
 end;
 
+procedure DeInitLCLFDLib;
+type TDeInit=procedure ;{$IFdef MSWindows}stdcall{$ELSE}Cdecl{$ENDIF};
+begin
+if not LCLFDLibHandleIsValid then LoadLCLFDLib;
+assert(LCLFDLibHandleIsValid,'library named '+LCLFDLibname+' not loaded');
+TDeInit(GetMethod(LCLFDLibHandle,'DeInit'))();
+end;
+
 function UnLoadLCLFDLib:boolean;
 begin
-{if LCLFDLibHandleIsValid and}
+DeInitLCLFDLib;
 result:=UnloadLibrary(LCLFDLibHandle);
 if result then LCLFDLibHandle:=NilHandle;
 end;
