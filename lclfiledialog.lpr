@@ -51,6 +51,11 @@ inited:=true;
 end;
 end;
 
+procedure DeInit;{$IFdef MSWindows}stdcall{$ELSE}Cdecl{$ENDIF};
+begin
+Application.Terminate;
+end;
+
 function HasInited:boolean;{$IFdef MSWindows}stdcall{$ELSE}Cdecl{$ENDIF};
 begin
   result:=inited;
@@ -106,6 +111,7 @@ begin OpenDialog.Filter:=NewFilter;end;
 
 exports
 Init,
+DeInit,
 HasInited,
 WidgetType,
 OpenDialogCreate,
