@@ -8,15 +8,6 @@ uses
   Classes,portabledynlib;
 
 const
-
-{SelectFileDialog Lib name:}
-
-{{$IFdef MSWindows}
-FNDLibname='selectfiledialog.dll';
-{$ELSE}
- FNDLibname='selectfiledialog.so';
-{$ENDIF}}
-
 LCLFDLibName='lclfiledialog';
 
 var LCLFDLibHandle:TLibHandle=NilHandle;
@@ -155,26 +146,6 @@ end;
  end;
 
 }
-
-{
-//static
-function OpenDialogCreate:pointer;{$IFdef MSWindows}stdcall{$ELSE}Cdecl{$ENDIF};external FNDLibname;
-procedure OpenDialogDestroy(Dialog:pointer){$IFdef MSWindows}stdcall{$ELSE}Cdecl{$ENDIF};
-external FNDLibname;
-
-function OpenDialogExecute(Dialog:pointer):boolean;{$IFdef MSWindows}stdcall{$ELSE}Cdecl{$ENDIF};
-external FNDLibname;
-
-function OpenDialogFileName(Dialog:pointer):PAnsiChar;{$IFdef MSWindows}stdcall{$ELSE}Cdecl{$ENDIF};
-external FNDLibname;
-
-procedure OpenDialogSetFileName(Dialog:pointer;NewName:PAnsiChar);{$IFdef MSWindows}stdcall{$ELSE}Cdecl{$ENDIF};
-external FNDLibname;
-}
-
-//dynamic
-
-
 
 implementation
 
