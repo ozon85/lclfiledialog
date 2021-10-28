@@ -12,7 +12,7 @@ LCLFDLibName='lclfiledialog';
 
 var LCLFDLibHandle:TLibHandle=NilHandle;
 
-procedure LoadLCLFDLib;
+function LoadLCLFDLib:boolean;
 function LCLFDLibHandleIsValid:boolean;
 procedure InitLCLFDLib;
 function LCLFDLibHasInited:boolean;
@@ -155,10 +155,11 @@ result:=GetProcedureAddress(LibHandle,MethodName);
 assert(result<>nil,'library method '+MethodName+' not found');
 end;
 
-procedure LoadLCLFDLib;
+function LoadLCLFDLib:boolean;
 begin
 if not LCLFDLibHandleIsValid then
 LCLFDLibHandle:=FindAndLoadLibrary(LCLFDLibname);
+result:=LCLFDLibHandleIsValid;
 end;
 
 procedure InitLCLFDLib;
